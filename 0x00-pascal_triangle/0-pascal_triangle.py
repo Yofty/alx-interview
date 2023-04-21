@@ -10,9 +10,9 @@ def pascal_triangle(n):
     pascal_triangle = [0] * n
 
     for i in range(n):
-        row = [0] * (i+1)
+        row = [0] * (i + 1)
         row[0] = 1
-        row[len(row) -1] = 1
+        row[len(row) - 1] = 1
 
         for j in range(1, i):
             if j > 0 and j < len(row):
