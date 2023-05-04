@@ -9,7 +9,7 @@ def minOperations(n):
     no_of_copy = 0  # number of 'H's copied
 
     while no_of_chars < n:
-        if no_of_copy = 0:
+        if no_of_copy == 0:
             no_of_copy = no_of_chars
             counter += 1
 
