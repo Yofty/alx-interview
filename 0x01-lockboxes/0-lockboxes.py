@@ -6,7 +6,7 @@ def canUnlockAll(boxes):
     """determines if yopu can open all the lockboxes"""
     unlocked = set()
 
-    for box_id, bod in enumerate(boxes):
+    for box_id, box in enumerate(boxes):
         if len(box) == 0 or box_id == 0:
             unlocked.add(box_id)
         for key in box:
