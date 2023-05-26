@@ -1,38 +1,38 @@
 #!/usr/bin/python3
-""" reads stdin line by line an d computes metrics"""
+"""stats module
+"""
+from sys import stdin
 
 
-import sys
-
-cache = {'200': 0, '301': 0, '400': 0, '401': 0,
+codes = {'200': 0, '301': 0, '400': 0, '401': 0,
          '403': 0, '404': 0, '405': 0, '500': 0}
+size = 0
 
-total_size = 0
-counter = 0
 
-try:
-    for line in sys.stdin:
-        line_list = line.split(" ")
-        if len(line_list) > 4:
-            code = line_list[-2]
-            size = int(line_list[-1])
-            if code in cache.keys():
-                cache[code] += 1
-            total_size += size
-            counter += 1
+def print_info():
+    """print_info method print needed info
+    Args:
+        codes (dict): code status
+        size (int): size of files
+    """
+    print("File size: {}".format(size))
+    for key, val in sorted(codes.items()):
+        if val > 0:
+            print("{}: {}".format(key, val))
 
-        if counter == 10:
-            counter = 0
-            print('File size: {}'.format(total_size))
-            for key, vlue in sorted(cache.items()):
-                if value != 0:
-                    print('{}: {}'.format(key, value))
-
-except Exception as err:
-    pass
-
-finally:
-    print('File size: {}'.format(total_size))
-    for key, value in sorted(cache.items()):
-        if value != 0:
-            print('{}: {}'.format(key, value))
+if __name__ == '__main__':
+    try:
+        for i, line in enumerate(stdin, 1):
+            try:
+                info = line.split()
+                size += int(info[-1])
+                if info[-2] in codes.keys():
+                    codes[info[-2]] += 1
+            except Exception:
+                pass
+            if not i % 10:
+                print_info()
+    except KeyboardInterrupt:
+        print_info()
+        raise
+    print_info()
